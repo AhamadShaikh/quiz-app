@@ -10,12 +10,12 @@ const QuizPage = () => {
   const getFormData = async () => {
     try {
       let res = await axios.get(`https://quiz-api-2cgp.onrender.com/api/formdata`)
-      setData(res?.data?.data)
+      const lastElement = res?.data?.formData[res?.data?.formData.length - 1]
+      setData(lastElement)
     } catch (error) {
       console.log(error);
     }
   }
-
 
   useEffect(() => {
     getFormData()
@@ -27,11 +27,21 @@ const QuizPage = () => {
         <Navbar />
       </div>
       {/* <div>
-        {
-          data?.map((ele) => (
-            <Quiz />
-          ))
-        }
+        <form>
+
+          <div className='category'>
+
+            <div>
+                {
+                  data?.categorize[0]?.items?.map((ele)=>(
+                    <div key={ele.id}>{ele.content}</div>
+                  ))
+                }
+            </div>
+
+          </div>
+
+        </form>
       </div> */}
     </div>
   );

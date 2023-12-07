@@ -14,7 +14,8 @@ const initialState = {
             categorize_description: "",
             categorize_media: "",
             category: [],
-            itemsAndBelongsTo: [],
+            items: [],
+            belongsTo: []
         },
     ],
     cloze: [
@@ -32,9 +33,8 @@ const initialState = {
             comprehension_description: "",
             comprehension_passage: "",
             comprehension_media: "",
-            comprehension_questions: [
-                { points: 0, question: "", options: [] },
-            ],
+            comprehension_questions: [],
+            comprehension_options: []
         },
     ],
 };
@@ -53,6 +53,9 @@ const CreateFormPage = () => {
     const [comprehensionPassage, setComprehensionPassage] = useState("");
     const [comprehensionQuestion, setComprehensionQuestion] = useState("");
     const [comprehensionPoints, setComprehensionPoints] = useState(initialState.comprehension.comprehension_points)
+    const [categorizeMedia, setCategorizeMedia] = useState("")
+    const [clozeMedia, setClozeMedia] = useState("")
+    const [comprhensionMedia, setComprehensionMedia] = useState("")
 
     const [comprehensionDescription, setComprehensionDescription] = useState("")
 
@@ -223,7 +226,7 @@ const CreateFormPage = () => {
                 {
                     categorize_points: Number(categorizePoints),
                     categorize_description: categorizeDescription,
-                    categorize_media: "none",
+                    categorize_media: categorizeMedia,
                     category: catArr,
                     items: itemsArr,
                     belongsTo: belongsTo
@@ -234,7 +237,7 @@ const CreateFormPage = () => {
                     cloze_points: Number(clozePoints),
                     cloze_preview: "none",
                     cloze_question: clozeQuestion,
-                    cloze_media: "none",
+                    cloze_media: clozeMedia,
                     cloze_options: clozeOp,
                 },
             ],
@@ -243,7 +246,7 @@ const CreateFormPage = () => {
                     comprehension_points: Number(comprehensionPoints),
                     comprehension_description: comprehensionDescription,
                     comprehension_passage: comprehensionPassage,
-                    comprehension_media: "none",
+                    comprehension_media: comprhensionMedia,
                     comprehension_questions: comprehensionQuestion,
                     comprehensionOtions: ComprehensionOp,
                 },
@@ -295,6 +298,16 @@ const CreateFormPage = () => {
                                     className="input-field border-2 border-blue-400 rounded-md w-full py-2 px-3"
                                 />
                             </div>
+                            <div className="mb-4 flex items-center gap-1">
+                                <label htmlFor="description" className="block text-sm font-medium text-gray-600 mb-2">Media :</label>
+                                <input
+                                    type="text"
+                                    name="categorize_points"
+                                    value={formData.categorize.categorize_media}
+                                    onChange={(e) => setCategorizeMedia(e.target.value)}
+                                    className="input-field border-2 border-blue-400 rounded-md w-[150px] py-2 px-3"
+                                />
+                            </div>
                             <Catagorize handleInputCategoryChange={handleInputCategoryChange} onDragEnd={onDragEnd} item={category} />
                             <div className='flex justify-between'>
                                 <Items handleInputItemsChange={handleInputItemsChange} onDragEnd={onDragEnd2} item={items} />
@@ -334,6 +347,16 @@ const CreateFormPage = () => {
                                     value={clozeQuestion}
                                     onChange={(e) => setClozeQuestion(e.target.value)}
                                     className="input-field border-2 border-blue-400 rounded-md w-full py-2 px-3"
+                                />
+                            </div>
+                            <div className="mb-4 flex items-center gap-1">
+                                <label htmlFor="description" className="block text-sm font-medium text-gray-600 mb-2">Media :</label>
+                                <input
+                                    type="text"
+                                    name="categorize_points"
+                                    value={formData.cloze.cloze_media}
+                                    onChange={(e) => setClozeMedia(e.target.value)}
+                                    className="input-field border-2 border-blue-400 rounded-md w-[150px] py-2 px-3"
                                 />
                             </div>
                             <ClozeOptions handleOptionsChange={handleOptionsChange} onDragEnd={onDragEnd4} item={clozeOptions} />
@@ -392,6 +415,16 @@ const CreateFormPage = () => {
                                     value={formData.comprehension.comprehension_questions}
                                     onChange={(e) => setComprehensionQuestion(e.target.value)}
                                     className="input-field border-2 border-blue-400 rounded-md w-full py-2 px-3"
+                                />
+                            </div>
+                            <div className="mb-4 flex items-center gap-1">
+                                <label htmlFor="description" className="block text-sm font-medium text-gray-600 mb-2">Media :</label>
+                                <input
+                                    type="text"
+                                    name="categorize_points"
+                                    value={formData.comprehension.comprehension_media}
+                                    onChange={(e) => setComprehensionMedia(e.target.value)}
+                                    className="input-field border-2 border-blue-400 rounded-md w-[150px] py-2 px-3"
                                 />
                             </div>
                             <ComprehensionOptions handleInputComprehensionChange={handleInputComprehensionChange} onDragEnd={onDragEnd5} item={comprehensionOptions} />
