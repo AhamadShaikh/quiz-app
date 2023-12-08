@@ -248,15 +248,15 @@ const CreateFormPage = () => {
                     comprehension_passage: comprehensionPassage,
                     comprehension_media: comprhensionMedia,
                     comprehension_questions: comprehensionQuestion,
-                    comprehensionOtions: ComprehensionOp,
+                    comprehension_options: ComprehensionOp,
                 },
             ],
         };
 
         console.log(data);
         await axios.post('https://quiz-api-2cgp.onrender.com/api/create', data)
-            .then(response => console.log(response))
-            .catch(error => console.error(error.response));
+            .then(response => alert("Quiz Created Successfully"))
+            .catch(error => alert("Somthing went wrong"));
 
     };
 
@@ -433,7 +433,7 @@ const CreateFormPage = () => {
                             type="submit"
                             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
                         >
-                            Submit
+                            Create Quiz
                         </button>
                     </form>
                 </div>
